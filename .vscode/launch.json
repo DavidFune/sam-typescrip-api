@@ -5,14 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to SAM Local",
-            "type": "node",
-            "request": "attach",
-            "address": "localhost",
-            "port": 5858,
-            "localRoot": "${workspaceRoot}/src/",
-            "remoteRoot": "/var/task",
-            "protocol": "inspector"
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "sam-typescrip-api:GetProductsFunction",
+            "invokeTarget": {
+                "target": "template",
+                "templatePath": "${workspaceFolder}/template.yaml",
+                "logicalId": "GetProductsFunction"
+            },
+            "lambda": {
+                "payload": {},
+                "environmentVariables": {}
+            }
         }
     ]
 }

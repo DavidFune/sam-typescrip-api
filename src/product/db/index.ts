@@ -1,9 +1,11 @@
+import * as pg from 'pg';
 import { Sequelize, SequelizeOptions } from "sequelize-typescript";
 
 const sequelizeOptions: SequelizeOptions = {
     dialect: 'postgres',
     host: 'localhost',
     port: 5441,
+    dialectModule: pg,
     logging: true,
     username: 'postgres',
     password: 'postgres'
@@ -16,14 +18,7 @@ export function setupSequelize(options: SequelizeOptions = {}) {
 
     _sequelize = new Sequelize({
         ...sequelizeOptions,
-        ...options,
-        pool:{
-            max: 2,
-            min: 0,
-            idle: 0,
-            acquire: 3002,
-            evict: 1
-        }
+        ...options
     })
 
     return {
