@@ -1,5 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-
+import { setupSequelize } from './db';
+import { ProductModel } from './db/models/product';
 /**
  *
  * Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
@@ -10,13 +11,26 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
  *
  */
 
-export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+export const getProducts = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     let response: APIGatewayProxyResult;
+    
+    const { sequelize } = await setupSequelize({models: [ProductModel]})
+    
+    await sequelize.sync()
+
+    const products = await ProductModel.findAll()
+
+    let _products: ProductModel[] = []
+
+    await sequelize.close()
+    
+    products.forEach(product => _products.push(product.dataValues))
+    
     try {
         response = {
             statusCode: 200,
             body: JSON.stringify({
-                message: 'hello world',
+                "products": _products,
             }),
         };
     } catch (err: unknown) {
@@ -30,4 +44,4 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
     }
 
     return response;
-};
+}
