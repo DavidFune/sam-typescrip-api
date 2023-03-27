@@ -6,7 +6,7 @@ import {
     Model } from "sequelize-typescript";
 
 @Table({ tableName: "products", timestamps: false })
-export class ProductModel extends Model{
+export default class ProductModel extends Model{
     @PrimaryKey
     @Column({ type: DataType.INTEGER})
     declare id: number;
