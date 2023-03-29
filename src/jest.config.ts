@@ -6,7 +6,6 @@
 export default {
     rootDir: "product",
     clearMocks: true,
-    collectCoverage: true,
     //testMatch: ['**/tests/unit/*.test.ts'],
     testRegex: ".*\\..*spec\\.ts$",
     transform: {
