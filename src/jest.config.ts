@@ -4,14 +4,11 @@
  */
 
 export default {
-    transform: {
-        '^.+\\.ts?$': 'esbuild-jest',
-    },
-    rootDir: ".",
+    rootDir: "product",
     clearMocks: true,
-    collectCoverage: true,
-    coverageDirectory: 'coverage',
-    coverageProvider: 'v8',
     //testMatch: ['**/tests/unit/*.test.ts'],
     testRegex: ".*\\..*spec\\.ts$",
+    transform: {
+        "^.+\\.ts?$":["@swc/jest"]
+    },
 };

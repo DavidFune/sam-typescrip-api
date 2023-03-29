@@ -54,8 +54,6 @@ describe('Unit test for app handler', function () {
     };
     it('verifies get Products', async () => {
 
-
-
         const result: APIGatewayProxyResult = await getProducts({
             ...event,
             path: '/products',
