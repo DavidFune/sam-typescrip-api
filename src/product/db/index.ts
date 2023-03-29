@@ -3,7 +3,7 @@ import { Sequelize, SequelizeOptions } from "sequelize-typescript";
 
 const sequelizeOptions: SequelizeOptions = {
     dialect: 'postgres',
-    host: 'localhost',
+    host: '192.168.2.6',
     port: 5441,
     dialectModule: pg,
     logging: true,
