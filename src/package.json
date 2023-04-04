@@ -17,7 +17,7 @@
   "scripts": {
     "unit": "jest",
     "lint": "eslint '*.ts' --quiet --fix",
-    "build": "tsc",
+    "build": "rm -rf build; tsc",
     "test": "npm run compile && npm run unit"
   },
   "devDependencies": {

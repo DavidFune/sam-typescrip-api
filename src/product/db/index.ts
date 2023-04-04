@@ -2,13 +2,13 @@ import * as pg from 'pg';
 import { Sequelize, SequelizeOptions } from "sequelize-typescript";
 
 const sequelizeOptions: SequelizeOptions = {
-    dialect: 'postgres',
-    host: '192.168.2.6',
-    port: 5441,
+    dialect: process.env.DIALECT as any,
+    host: process.env.HOST,
+    port: process.env.PORT as any,
     dialectModule: pg,
-    logging: true,
-    username: 'postgres',
-    password: 'postgres'
+    logging: process.env.LOGGING as any,
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD
 }
 
 

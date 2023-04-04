@@ -27,13 +27,13 @@ exports.setupSequelize = void 0;
 const pg = __importStar(require("pg"));
 const sequelize_typescript_1 = require("sequelize-typescript");
 const sequelizeOptions = {
-    dialect: 'postgres',
-    host: '192.168.2.6',
-    port: 5441,
+    dialect: process.env.DIALECT,
+    host: process.env.HOST,
+    port: process.env.PORT,
     dialectModule: pg,
-    logging: true,
-    username: 'postgres',
-    password: 'postgres'
+    logging: process.env.LOGGING,
+    username: process.env.USERNAME,
+    password: process.env.PASSWORD
 };
 function setupSequelize(options = {}) {
     let _sequelize;
