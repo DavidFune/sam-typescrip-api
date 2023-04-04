@@ -4,14 +4,50 @@ Description: >
   sam-typescrip-api
 
   Sample SAM Template for sam-typescrip-api
-  
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+
+Parameters:
+  Dialect:
+    Type: String
+    Default: ""
+  Host:
+    Type: String
+    Default: ""
+  Port:
+    Type: Number
+    Default: 5432
+  Logging:
+    Type: String
+    Default: ""
+  UserName:
+    Type: String
+    Default: ""
+  Password:
+    Type: String
+    Default: ""
+
 Globals:
   Function:
     Timeout: 3
     Tracing: Active
+    Environment:
+      DIALECT: !Ref Dialect
+      HOST: !Ref Host
+      PORT: !Ref Port
+      LOGGING: !Ref Logging
+      USERNAME: !Ref UserName
+      PASSWORD: !Ref Password
   Api:
     TracingEnabled: True
+
+Resources:
+  Api:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'OPTIONS,POST, PUT,GET, DELETE'"
+        AllowHeaders: "'Content-Type,Authorization, X-Amz-Date,X-Esmt-Application'"
+        AllowOrigin: "'*'"
 
 Resources:
   GetProductsFunction:
